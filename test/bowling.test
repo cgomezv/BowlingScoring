@@ -1,0 +1,41 @@
+# sum.test
+ 
+package require tcltest
+namespace import ::tcltest::*
+ 
+# Software under test
+source ../src/bowling.tcl
+ 
+test sum_addTwoZerosExpectZero {
+    Test: [sum 0 0] == 0
+} -body {
+    sum 0 0
+} -result 0
+ 
+test sum_addTwoPositiveNumbers {} -body {
+    sum 4 9
+} -result 13
+ 
+test sum_addPositiveToNegative {} -body {
+    sum -95 72
+} -result -23
+
+test square_ofZeroExpectsZero {
+    Test: [square 0] == 0
+} -body {
+    square 0
+} -result 0
+ 
+test square_ofNegativeExpectsPositive {} -body {
+    square -9
+} -result 81
+ 
+test square_ofPositiveExpectsPositive {} -body {
+    square 19
+} -result 361
+
+test sumar_addFourPositiveNumbers {} -body {
+    sumar 1 2 3 4
+} -result 10
+
+cleanupTests
