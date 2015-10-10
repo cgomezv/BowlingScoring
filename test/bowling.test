@@ -38,4 +38,8 @@ test sumar_addFourPositiveNumbers {} -body {
     sumar 1 2 3 4
 } -result 10
 
+test score_getScoreNoThrows {} -body {
+     get_score
+} -result 0
+
 cleanupTests
