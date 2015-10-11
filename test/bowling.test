@@ -39,22 +39,33 @@ test sumar_addFourPositiveNumbers {} -body {
 } -result 10
 
 test score_getScoreNoThrows {} -body {
+     initialize_global_variables
      get_score
 } -result 0
 
 test score_getScoreAddOneThrow {} -body {
-     global score
-     set score [expr {0}]
+     initialize_global_variables
      add_throw 6
      get_score
 } -result 6
 
 test score_getScoreAddTwoThrowsNoMark {} -body {
-     global score
-     set score [expr {0}]
+     initialize_global_variables
      add_throw 5
      add_throw 4
      get_score
 } -result 9
+
+test score_getScoreAddFourThrowsNoMark {} -body {
+     initialize_global_variables
+     add_throw 5
+     add_throw 4
+     add_throw 7
+     add_throw 2
+     set result1 [get_score_for_frame 1]
+     set result2 [get_score_for_frame 2]
+     set result3 [get_score]
+     puts "[expr {$result1}] [expr {$result2}] [expr {$result3}]"
+} -output "9 18 18\n"
 
 cleanupTests
