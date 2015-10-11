@@ -40,11 +40,12 @@ proc get_score_for_frame { frame } {
     global throws
     set score 0
     set ball 0
-    for {set current_frame 0} {$current_frame < $frame} {incr current_frame} { 
+    for {set current_frame 0} {$current_frame < $frame} {incr current_frame} {
 	incr ball
-	set score [expr {$score + $throws($ball)}]
+	set firstThrow [expr {$throws($ball)}]
 	incr ball
-	set score [expr {$score + $throws($ball)}]
+	set secondThrow [expr {$throws($ball)}]
+	set score [expr {$score + $firstThrow + $secondThrow}]
     }
     return [ expr {$score}]
 }
