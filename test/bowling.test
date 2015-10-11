@@ -42,4 +42,19 @@ test score_getScoreNoThrows {} -body {
      get_score
 } -result 0
 
+test score_getScoreAddOneThrow {} -body {
+     global score
+     set score [expr {0}]
+     add_throw 6
+     get_score
+} -result 6
+
+test score_getScoreAddTwoThrowsNoMark {} -body {
+     global score
+     set score [expr {0}]
+     add_throw 5
+     add_throw 4
+     get_score
+} -result 9
+
 cleanupTests

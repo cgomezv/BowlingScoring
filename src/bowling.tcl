@@ -18,3 +18,9 @@ proc get_score {} {
     global score
     return [ expr {$score}]
 }
+
+proc add_throw { pins } {
+    global score
+    set score [expr {$score + $pins}]
+    return [ expr {$score}]
+}
