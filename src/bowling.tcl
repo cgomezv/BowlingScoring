@@ -45,7 +45,13 @@ proc get_score_for_frame { frame } {
 	set firstThrow [expr {$throws($ball)}]
 	incr ball
 	set secondThrow [expr {$throws($ball)}]
-	set score [expr {$score + $firstThrow + $secondThrow}]
+	set frameScore [expr {$firstThrow + $secondThrow}]
+	if {$frameScore == 10} {
+	    incr ball
+	    set score [expr {$score + $frameScore + $throws($ball)}]
+	} else {
+	    set score [expr {$score + $frameScore}]
+	}
     }
     return [ expr {$score}]
 }

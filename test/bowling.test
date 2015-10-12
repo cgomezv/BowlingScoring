@@ -68,4 +68,12 @@ test score_getScoreAddFourThrowsNoMark {} -body {
      puts "[expr {$result1}] [expr {$result2}] [expr {$result3}]"
 } -output "9 18 18\n"
 
+test score_getScoreSimpleSpare {} -body {
+     initialize_global_variables
+     add_throw 3
+     add_throw 7
+     add_throw 3
+     get_score_for_frame 1
+} -result 13
+
 cleanupTests
