@@ -27,6 +27,8 @@ proc sumar {a b c d} {
 
 proc get_score {} {
     global score
+    set frame [get_current_frame]
+    set score [get_score_for_frame [expr {$frame - 1}]]
     return [ expr {$score}]
 }
 
