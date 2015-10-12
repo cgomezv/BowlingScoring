@@ -50,6 +50,9 @@ proc adjust_current_frame { pins} {
 	set isFirstThrow true
 	incr current_frame
     }
+    if {$current_frame > 11} {
+	set current_frame 11
+    }
 }
 
 proc add_throw { pins } {

@@ -100,4 +100,12 @@ test score_getScoreSimpleStrike {} -body {
      puts "[expr {$result1}] [expr {$result2}] [expr {$result3}]"
 } -output "19 28 3\n"
 
+test score_getScorePerfectGame {} -body {
+     initialize_global_variables
+     for {set i 0} {$i < 12} {incr i} {add_throw 10}
+     set result1 [get_score]
+     set result2 [get_current_frame]
+     puts "[expr {$result1}] [expr {$result2}]"
+} -output "300 11\n"
+
 cleanupTests
