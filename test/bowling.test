@@ -108,4 +108,16 @@ test score_getScorePerfectGame {} -body {
      puts "[expr {$result1}] [expr {$result2}]"
 } -output "300 11\n"
 
+test score_getScoreTestEndOfArray {10th frame spare and strike in last position of array} -body {
+     initialize_global_variables
+     for {set i 0} {$i < 9} {incr i} {
+     	 add_throw 0
+     	 add_throw 0
+     }
+     add_throw 2
+     add_throw 8
+     add_throw 10
+     get_score
+} -result 20
+
 cleanupTests
