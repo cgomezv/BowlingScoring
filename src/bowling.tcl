@@ -2,8 +2,12 @@ proc initialize_global_variables {} {
     global score
     global throws
     global current_throw
+    global current_frame
+    global isFirstThrow
     set score [ expr {0}]
     set current_throw 0
+    set current_frame 0
+    set isFirstThrow true
     return
 }
 
@@ -26,13 +30,26 @@ proc get_score {} {
     return [ expr {$score}]
 }
 
+proc get_current_frame {} {
+    global current_frame
+    return [ expr {$current_frame}]
+}
+
 proc add_throw { pins } {
     global score
     global throws
     global current_throw
+    global current_frame
+    global isFirstThrow
     incr current_throw
     set throws($current_throw) $pins
     set score [expr {$score + $pins}]
+    if { $isFirstThrow == true} {
+	set isFirstThrow false
+	incr current_frame
+    } else {
+	set isFirstThrow true
+    }
     return [ expr {$score}]
 }
 
