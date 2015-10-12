@@ -153,4 +153,15 @@ test score_getScoreHeartBreak {} -body {
      get_score
 } -result 299
 
+test score_getScoreTenthFrameSpare {} -body {
+     initialize_global_variables
+     for {set i 0} {$i < 9} {incr i} {
+     	 add_throw 10
+     }
+     add_throw 9
+     add_throw 1
+     add_throw 1
+     get_score
+} -result 270
+
 cleanupTests
