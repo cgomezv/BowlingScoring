@@ -37,11 +37,15 @@ proc get_current_frame {} {
     return [ expr {$current_frame}]
 }
 
-proc adjust_current_frame {} {
+proc adjust_current_frame { pins} {
     global current_frame
     global isFirstThrow
     if { $isFirstThrow == true} {
-	set isFirstThrow false
+	if { $pins == 10} {
+	    incr current_frame
+	} else {
+	    set isFirstThrow false
+	}
     } else {
 	set isFirstThrow true
 	incr current_frame
@@ -55,7 +59,7 @@ proc add_throw { pins } {
     incr current_throw
     set throws($current_throw) $pins
     set score [expr {$score + $pins}]
-    adjust_current_frame
+    adjust_current_frame $pins
 }
 
 proc get_score_for_frame { frame } {
@@ -65,15 +69,24 @@ proc get_score_for_frame { frame } {
     for {set current_frame 0} {$current_frame < $frame} {incr current_frame} {
 	incr ball
 	set firstThrow [expr {$throws($ball)}]
-	incr ball
-	set secondThrow [expr {$throws($ball)}]
-	set frameScore [expr {$firstThrow + $secondThrow}]
-	if {$frameScore == 10} {
+	if {$firstThrow == 10} {
 	    incr ball
-	    set score [expr {$score + $frameScore + $throws($ball)}]
-	    set ball [expr {$ball - 1}]
+	    set nextThrow [expr {$throws($ball)}]
+	    incr ball
+	    set nextNextThrow [expr {$throws($ball)}]
+	    set score [expr {$score + $firstThrow + $nextThrow + $nextNextThrow}]
+	    set ball [expr {$ball - 2}]
 	} else {
-	    set score [expr {$score + $frameScore}]
+	    incr ball
+	    set secondThrow [expr {$throws($ball)}]
+	    set frameScore [expr {$firstThrow + $secondThrow}]
+	    if {$frameScore == 10} {
+		incr ball
+		set score [expr {$score + $frameScore + $throws($ball)}]
+		set ball [expr {$ball - 1}]
+	    } else {
+		set score [expr {$score + $frameScore}]
+	    }
 	}
     }
     return [ expr {$score}]

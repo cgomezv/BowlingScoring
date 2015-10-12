@@ -89,4 +89,15 @@ test score_getScoreSimpleFrameAfterSpare {} -body {
      puts "[expr {$result1}] [expr {$result2}] [expr {$result3}] [expr {$result4}]"
 } -output "13 18 18 3\n"
 
+test score_getScoreSimpleStrike {} -body {
+     initialize_global_variables
+     add_throw 10
+     add_throw 3
+     add_throw 6
+     set result1 [get_score_for_frame 1]
+     set result2 [get_score]
+     set result3 [get_current_frame]
+     puts "[expr {$result1}] [expr {$result2}] [expr {$result3}]"
+} -output "19 28 3\n"
+
 cleanupTests
