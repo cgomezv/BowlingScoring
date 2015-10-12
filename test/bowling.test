@@ -87,6 +87,6 @@ test score_getScoreSimpleFrameAfterSpare {} -body {
      set result3 [get_score]
      set result4 [get_current_frame]
      puts "[expr {$result1}] [expr {$result2}] [expr {$result3}] [expr {$result4}]"
-} -output "13 18 18 2\n"
+} -output "13 18 18 3\n"
 
 cleanupTests
