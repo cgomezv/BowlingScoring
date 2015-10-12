@@ -120,4 +120,28 @@ test score_getScoreTestEndOfArray {10th frame spare and strike in last position 
      get_score
 } -result 20
 
+test score_getScoreSampleGame {} -body {
+     initialize_global_variables
+     add_throw 1
+     add_throw 4
+     add_throw 4
+     add_throw 5
+     add_throw 6
+     add_throw 4
+     add_throw 5
+     add_throw 5
+     add_throw 10
+     add_throw 0
+     add_throw 1
+     add_throw 7
+     add_throw 3
+     add_throw 6
+     add_throw 4
+     add_throw 10
+     add_throw 2
+     add_throw 8
+     add_throw 6
+     get_score
+} -result 133
+
 cleanupTests
