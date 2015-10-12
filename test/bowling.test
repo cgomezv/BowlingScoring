@@ -43,11 +43,11 @@ test score_getScoreNoThrows {} -body {
      get_score
 } -result 0
 
-test score_getScoreAddOneThrow {} -body {
-     initialize_global_variables
-     add_throw 6
-     get_score
-} -result 6
+#test score_getScoreAddOneThrow {} -body {
+#     initialize_global_variables
+#     add_throw 6
+#     get_score
+#} -result 6
 
 test score_getScoreAddTwoThrowsNoMark {} -body {
      initialize_global_variables
