@@ -76,4 +76,16 @@ test score_getScoreSimpleSpare {} -body {
      get_score_for_frame 1
 } -result 13
 
+test score_getScoreSimpleFrameAfterSpare {} -body {
+     initialize_global_variables
+     add_throw 3
+     add_throw 7
+     add_throw 3
+     add_throw 2
+     set result1 [get_score_for_frame 1]
+     set result2 [get_score_for_frame 2]
+     set result3 [get_score]
+     puts "[expr {$result1}] [expr {$result2}] [expr {$result3}]"
+} -output "13 18 18\n"
+
 cleanupTests

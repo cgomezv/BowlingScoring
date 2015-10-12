@@ -49,6 +49,7 @@ proc get_score_for_frame { frame } {
 	if {$frameScore == 10} {
 	    incr ball
 	    set score [expr {$score + $frameScore + $throws($ball)}]
+	    set ball [expr {$ball - 1}]
 	} else {
 	    set score [expr {$score + $frameScore}]
 	}
